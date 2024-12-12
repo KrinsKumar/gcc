@@ -489,6 +489,7 @@ extern gimple_opt_pass *make_pass_nothrow (gcc::context *ctxt);
 extern gimple_opt_pass *make_pass_tracer (gcc::context *ctxt);
 extern gimple_opt_pass *make_pass_warn_restrict (gcc::context *ctxt);
 extern gimple_opt_pass *make_pass_warn_unused_result (gcc::context *ctxt);
+extern gimple_opt_pass *make_pass_prunecheck (gcc::context *ctxt);
 extern gimple_opt_pass *make_pass_diagnose_tm_blocks (gcc::context *ctxt);
 extern gimple_opt_pass *make_pass_lower_tm (gcc::context *ctxt);
 extern gimple_opt_pass *make_pass_tm_init (gcc::context *ctxt);

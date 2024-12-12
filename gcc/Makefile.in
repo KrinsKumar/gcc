@@ -1718,6 +1718,7 @@ OBJS = \
 	tree-cfgcleanup.o \
 	tree-chrec.o \
 	tree-complex.o \
+	tree-prunecheck.o \
 	tree-data-ref.o \
 	tree-dfa.o \
 	tree-diagnostic.o \
