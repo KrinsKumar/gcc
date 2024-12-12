@@ -14,6 +14,7 @@
 #include "cgraph.h"
 #include "hash-table.h" // GCC hash utilities
 #include <string>        // For std::string
+#include <unordered_map> // For std::unordered_map
 
 // Pass metadata
 const pass_data pass_data_prune_check = {
@@ -70,9 +71,28 @@ pass_prunecheck::execute(function *fun)
     }
   }
 
-  // Print the hash
+  // Static map to store function hashes
+  static std::unordered_map<std::string, unsigned long> function_hashes;
+
+  // Check if the hash already exists
+  bool prune = false;
+  for (const auto &entry : function_hashes) {
+    if (entry.second == hash) {
+      prune = true;
+      break;
+    }
+  }
+
+  // Print the hash and prune decision
   if (dump_file) {
     fprintf(dump_file, "Hash for function %s: %lu\n", function_name(fun), hash);
+    if (prune) {
+      fprintf(dump_file, "Decision: prune\n");
+    } else {
+      fprintf(dump_file, "Decision: no prune\n");
+      // Add the current function's hash to the map
+      function_hashes[function_name(fun)] = hash;
+    }
   }
 
   if (dump_file) {
